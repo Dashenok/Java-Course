@@ -8,7 +8,7 @@ public class GameTest {
 
     @Test
     public void testGetField() throws Exception {
-        final Field insertField = new Field();
+        final Field insertField = new Field(3);
         final Field expectedField = insertField;
         final Game game = new Game(null, null, insertField);
 
