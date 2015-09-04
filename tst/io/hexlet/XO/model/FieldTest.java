@@ -1,5 +1,6 @@
 package io.hexlet.XO.model;
 
+import io.hexlet.XO.model.exceptions.AlreadyOccupiedException;
 import io.hexlet.XO.model.exceptions.InvalidPointException;
 import org.junit.Test;
 
@@ -75,7 +76,7 @@ public class FieldTest {
     @Test
     public void testGetFigureWhenYIsMoreThenSize() throws Exception {
         final Field field = new Field();
-        final Point inputPoint = new Point(6, field.getFieldSize() + 1);
+        final Point inputPoint = new Point(0, field.getFieldSize() + 1);
 
         try {
             field.getFigure(inputPoint);
@@ -84,5 +85,19 @@ public class FieldTest {
         }
     }
 
+
+    @Test
+    public void testSetFigureWhenPointAlreadyOccupied() throws Exception {
+        final Field field = new Field();
+        final Point inputPoint = new Point(0, 0);
+        final Figure figure = Figure.O;
+        field.setFigure(inputPoint, figure);
+
+        try {
+            field.setFigure(inputPoint, figure);
+            fail();
+        } catch (final AlreadyOccupiedException e) {
+        }
+    }
 
 }
